@@ -1,0 +1,136 @@
+# STRIDE AI — Project Instructions for Codex
+
+## Product
+
+Build STRIDE AI, a premium intelligent movement and wearable-health companion app.
+
+Tagline: Every step tells a story.
+
+This is a Flutter/Dart mobile application. The first development phase is entirely app-focused. Do not require physical footwear, an ESP32, BLE hardware, Firebase credentials, or paid AI API keys to run the application.
+
+## Core development rules
+
+1. Inspect the current repository before modifying it.
+2. Preserve working code and existing useful project structure.
+3. Build incrementally, not as one giant code dump.
+4. Run formatting, static analysis, tests, and build checks after meaningful changes.
+5. Fix errors caused by your changes before proceeding.
+6. Never claim that code has been tested if the command was not actually run.
+7. Never replace real implementations with decorative mockups merely to make a screen look complete.
+8. Never add nonfunctional buttons without a clear reason and visible disabled state.
+9. Use demo data initially, but label it clearly and separate it from real hardware data.
+10. Keep business logic, UI, storage, and data models separate.
+11. Avoid giant files, duplicated logic, and unnecessary dependencies.
+12. Ask questions only when a decision is genuinely blocking; otherwise choose sensible defaults and document them.
+
+## Technology
+
+- Flutter and Dart
+- Material 3 with a custom design system
+- Riverpod for state management, where appropriate
+- go_router for navigation
+- A maintained chart library where useful
+- Local persistent storage for sessions and preferences
+- A repository abstraction for future Firebase and BLE integrations
+
+Check package compatibility before adding dependencies. Keep essential functionality available without network access.
+
+## Visual identity
+
+Use a premium dark theme with:
+
+- Background: #0B0D12
+- Elevated surfaces: #151923
+- Secondary surfaces: #1D2330
+- Mint accent: #8CFFCF
+- Blue accent: #91B8FF
+- Lavender accent: #D6A8FF
+- Warm warning: #FFD08A
+- Error: #FF747F
+- High-contrast, readable typography
+
+Provide a light theme option.
+
+Create reusable components for buttons, metrics, charts, status indicators, section headings, empty states, error states, loading states, and dialogs.
+
+Use smooth but restrained animations, consistent spacing, accessible labels, responsive layouts, and a polished five-tab bottom navigation.
+
+Avoid generic template styling, excessive cards, clutter, and decorative data that looks real.
+
+## Main navigation
+
+1. Home
+2. Live
+3. AI Coach
+4. Safety
+5. Profile
+
+Additional destinations include Gait Intelligence, Progress and History, Session Details, Walk Replay, Device Hub, Challenges, Emergency Contacts, Settings, Privacy, and Reports.
+
+Every implemented navigation destination must lead to a meaningful screen.
+
+## App-first development
+
+Implement the product using a deterministic local demo-data provider.
+
+The app must support:
+
+- Onboarding
+- Home dashboard
+- Live sensor simulation
+- Three-zone insole visualization
+- Walking-session recording
+- Basic gait metrics
+- Session history
+- Historical analytics
+- Walk Replay
+- AI Coach with a deterministic fallback
+- Personal baseline comparisons
+- Movement challenges
+- Safety workflow simulation
+- Emergency contact management
+- Device Hub in demo mode
+- Profile and settings
+- Local persistence
+- Data export where implemented
+
+The demo provider must be replaceable later by real BLE data without rewriting UI screens.
+
+Do not implement hardware integration as a prerequisite for completing the app-first phase.
+
+## Accuracy and safety
+
+Do not invent heart rate, blood oxygen, temperature, or other unmeasured health metrics.
+
+Label simulated values as DEMO. Do not mix simulated sessions with real-device sessions without explicit source identification.
+
+Explain how gait scores and derived metrics are calculated.
+
+Do not claim to diagnose or prevent medical conditions.
+
+Fall alerts and emergency notifications must be safely simulated until the user explicitly configures and tests a supported real delivery mechanism.
+
+Never send real emergency messages during demo mode.
+
+## Architecture
+
+Organize the project by features and responsibilities. Keep domain models, repositories, providers, services, and UI widgets separate.
+
+Use typed models for important data. Handle asynchronous errors, empty data, persistence failures, and loading states.
+
+Keep the project ready for future BLE and Firebase adapters, but do not require either to launch the app.
+
+## Required workflow
+
+For every milestone:
+
+1. Inspect relevant files.
+2. State the intended implementation briefly.
+3. Implement the feature.
+4. Format changed Dart files.
+5. Run Flutter static analysis and relevant tests.
+6. Fix implementation-related errors.
+7. Summarize files changed and actual verification results.
+8. Identify any remaining limitations.
+
+Begin by auditing the generated Flutter project and proposing the initial implementation plan. Then build the foundation and a polished, functioning Home screen with deterministic demo data.

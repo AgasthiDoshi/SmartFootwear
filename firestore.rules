@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function validReadings() {
+      let data = request.resource.data;
+      let sensors = data.sensorValues;
+      return data.keys().hasOnly([
+            'dashboardSteps',
+            'dailyGoal',
+            'sensorValues',
+            'updatedAt',
+            'fallDetected',
+            'fallTriggerId'
+          ])
+          && data.dashboardSteps is int
+          && data.dashboardSteps >= 0
+          && data.dashboardSteps <= 1000000
+          && data.dailyGoal is int
+          && data.dailyGoal > 0
+          && data.dailyGoal <= 1000000
+          && sensors is list
+          && sensors.size() == 9
+          && sensors[0] is number
+          && sensors[0] >= 0
+          && sensors[0] <= 4095
+          && sensors[1] is number
+          && sensors[1] >= 0
+          && sensors[1] <= 4095
+          && sensors[2] is number
+          && sensors[2] >= 0
+          && sensors[2] <= 4095
+          && sensors[3] is number
+          && sensors[3] >= -2
+          && sensors[3] <= 2
+          && sensors[4] is number
+          && sensors[4] >= -2
+          && sensors[4] <= 2
+          && sensors[5] is number
+          && sensors[5] >= -2
+          && sensors[5] <= 2
+          && sensors[6] is number
+          && sensors[6] >= -250
+          && sensors[6] <= 250
+          && sensors[7] is number
+          && sensors[7] >= -250
+          && sensors[7] <= 250
+          && sensors[8] is number
+          && sensors[8] >= -250
+          && sensors[8] <= 250
+          && data.updatedAt == request.time;
+    }
+
+    match /strideAdmin/readings {
+      allow read, write: if true;
+    }
+
+    match /smartFootwearAdmin/readings {
+      allow read, write: if true;
+    }
+  }
+}
